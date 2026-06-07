@@ -12,23 +12,15 @@
         body { font-family: 'Inter', sans-serif; }
     </style>
 </head>
-<body class="bg-[#F4F7FE] min-h-screen flex text-[#2B3674]">
-
-    <!-- Include Komponen Sidebar -->
-    @include('layouts.sidebar')
-
-    <!-- Wrapper Konten Utama Kanan -->
-    <div class="flex-1 flex flex-col min-w-0">
-        
-        <!-- Include Komponen Header -->
-        @include('layouts.header')
-
-        <!-- Area Konten Dinamis -->
-        <main class="p-8 space-y-8 flex-1 overflow-y-auto">
-            @yield('content')
-        </main>
-        
+<body>
+    <div class="size-full min-h-screen bg-[#F7F8FC]">
+        <div class="flex h-screen bg-[#F7F8FC] overflow-hidden">
+            @include('layouts.sidebar')
+            <main class="flex-1 overflow-y-auto w-full">
+                @include('layouts.header')
+                @yield('content')
+            </main>
+        </div>
     </div>
-
 </body>
 </html>

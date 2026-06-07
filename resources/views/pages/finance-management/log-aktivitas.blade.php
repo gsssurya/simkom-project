@@ -4,77 +4,67 @@
 @section('subtitle', 'Riwayat input transaksi & laporan keuangan Anda')
 
 @section('content')
-    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-        
-        <div class="p-4 bg-[#F4F7FE] border-b border-gray-100">
-            <p class="text-xs font-medium text-gray-500 flex items-center gap-2">
-                <span>ℹ️</span> Hanya menampilkan aktivitas yang Anda lakukan.
-            </p>
+<div class="p-4 sm:p-6 lg:p-8">
+    <div class="bg-white rounded-xl border border-[#E5E7EB] shadow-[0_2px_12px_rgba(0,0,0,0.04)] overflow-hidden">
+        <div class="px-5 py-3 bg-[#F7F8FC] text-xs text-[#6B7280] font-semibold">
+            Hanya menampilkan aktivitas yang Anda lakukan.
         </div>
         
         <div class="overflow-x-auto">
-            <table class="w-full text-left border-collapse text-sm">
-                <thead>
-                    <tr class="text-xs font-bold text-[#A3AED0] uppercase tracking-wider bg-slate-50/50 border-b border-gray-100">
-                        <th class="py-4 px-6 font-semibold text-slate-400 w-1/4">Waktu</th>
-                        <th class="py-4 px-6 font-semibold text-slate-400 w-1/6">Aksi</th>
-                        <th class="py-4 px-6 font-semibold text-slate-400 w-7/12">Target</th>
+            <table class="w-full text-sm">
+                <thead class="bg-[#F7F8FC] text-[#6B7280]">
+                    <tr>
+                        <th class="text-left px-5 py-3 font-semibold whitespace-nowrap">Waktu</th>
+                        <th class="text-left px-5 py-3 font-semibold whitespace-nowrap">Aksi</th>
+                        <th class="text-left px-5 py-3 font-semibold">Target</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-gray-100 font-medium text-[#1B2559]">
-                    
-                    <tr class="hover:bg-slate-50/50 transition">
-                        <td class="py-4 px-6 text-gray-400 font-normal">30 Mei 2026, 15:23</td>
-                        <td class="py-4 px-6">
-                            <span class="bg-[#05CD99]/10 text-[#05CD99] text-xs font-bold px-3 py-1 rounded-full">Tambah</span>
-                        </td>
-                        <td class="py-4 px-6 text-gray-600">
-                            Pemasukan: Iuran anggota Mei (<span class="font-semibold text-[#1B2559]">Rp 2.400.000</span>)
-                        </td>
-                    </tr>
+                <tbody>
+                    @php
+                        // Data mock array jika belum dikirim dari Controller
+                        $log_aktivitas = $log_aktivitas ?? [
+                            ['waktu' => '30 Mei 2026, 15:23', 'aksi' => 'Tambah', 'target' => 'Pemasukan: Iuran anggota Mei (Rp 2.400.000)'],
+                            ['waktu' => '28 Mei 2026, 10:18', 'aksi' => 'Tambah', 'target' => 'Pengeluaran: Konsumsi rapat (Rp 350.000)'],
+                            ['waktu' => '26 Mei 2026, 13:45', 'aksi' => 'Edit',   'target' => 'Transaksi: Sewa tempat workshop'],
+                            ['waktu' => '20 Mei 2026, 16:30', 'aksi' => 'Tambah', 'target' => 'Pemasukan: Sponsor Workshop AI'],
+                            ['waktu' => '1 Mei 2026, 09:00',  'aksi' => 'Unduh',  'target' => 'Laporan: PDF April 2026'],
+                        ];
+                    @endphp
 
-                    <tr class="hover:bg-slate-50/50 transition">
-                        <td class="py-4 px-6 text-gray-400 font-normal">28 Mei 2026, 10:18</td>
-                        <td class="py-4 px-6">
-                            <span class="bg-[#05CD99]/10 text-[#05CD99] text-xs font-bold px-3 py-1 rounded-full">Tambah</span>
-                        </td>
-                        <td class="py-4 px-6 text-gray-600">
-                            Pengeluaran: Konsumsi rapat (<span class="font-semibold text-[#1B2559]">Rp 350.000</span>)
-                        </td>
-                    </tr>
-
-                    <tr class="hover:bg-slate-50/50 transition">
-                        <td class="py-4 px-6 text-gray-400 font-normal">26 Mei 2026, 13:45</td>
-                        <td class="py-4 px-6">
-                            <span class="bg-cyan-50 text-cyan-500 text-xs font-bold px-3 py-1 rounded-full">Edit</span>
-                        </td>
-                        <td class="py-4 px-6 text-gray-600">
-                            Transaksi: Sewa tempat workshop
-                        </td>
-                    </tr>
-
-                    <tr class="hover:bg-slate-50/50 transition">
-                        <td class="py-4 px-6 text-gray-400 font-normal">1 Mei 2026, 09:00</td>
-                        <td class="py-4 px-6">
-                            <span class="bg-teal-50 text-teal-500 text-xs font-bold px-3 py-1 rounded-full">Unduh</span>
-                        </td>
-                        <td class="py-4 px-6 text-gray-600">
-                            Laporan: PDF April 2026
-                        </td>
-                    </tr>
-
-                    <tr class="hover:bg-slate-50/50 transition">
-                        <td class="py-4 px-6 text-gray-400 font-normal">20 Mei 2026, 16:30</td>
-                        <td class="py-4 px-6">
-                            <span class="bg-[#05CD99]/10 text-[#05CD99] text-xs font-bold px-3 py-1 rounded-full">Tambah</span>
-                        </td>
-                        <td class="py-4 px-6 text-gray-600">
-                            Pemasukan: Sponsor Workshop AI
-                        </td>
-                    </tr>
-
+                    @foreach($log_aktivitas as $log)
+                        <tr class="border-t border-[#E5E7EB] hover:bg-[#F7F8FC]/50 transition-colors">
+                            <td class="px-5 py-4 text-[#6B7280] whitespace-nowrap">
+                                {{ $log['waktu'] }}
+                            </td>
+                            
+                            <td class="px-5 py-4 whitespace-nowrap">
+                                @if(Str::lower($log['aksi']) == 'tambah')
+                                    <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-[#DCFCE7] text-[#166534]">
+                                        {{ $log['aksi'] }}
+                                    </span>
+                                @elseif(Str::lower($log['aksi']) == 'edit')
+                                    <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-[#CCFBF1] text-[#0F766E]">
+                                        {{ $log['aksi'] }}
+                                    </span>
+                                @elseif(Str::lower($log['aksi']) == 'unduh' || Str::lower($log['aksi']) == 'download')
+                                    <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-[#E0F2FE] text-[#0369A1]">
+                                        {{ $log['aksi'] }}
+                                    </span>
+                                @else
+                                    <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-[#F3F4F6] text-[#374151]">
+                                        {{ $log['aksi'] }}
+                                    </span>
+                                @endif
+                            </td>
+                            
+                            <td class="px-5 py-4 text-[#6B7280]">
+                                {{ $log['target'] }}
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
     </div>
+</div>
 @endsection
