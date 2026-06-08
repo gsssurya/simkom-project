@@ -4,5 +4,4 @@
 @section('subtitle', 'Ringkasan sistem SIMKOM secara keseluruhan')
 
 @section('content')
-<p>test</p>
 @endsection
