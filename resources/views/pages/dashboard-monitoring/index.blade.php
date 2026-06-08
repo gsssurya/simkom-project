@@ -65,27 +65,16 @@
                     <h3 class="font-bold text-[#1C1E2C]">Tren Kegiatan 6 Bulan Terakhir</h3>
                     <p class="text-xs text-[#6B7280]">Total kegiatan terselenggara per bulan</p>
                 </div>
-                <button type="button" class="inline-flex items-center justify-center text-sm font-medium border bg-white text-foreground hover:bg-[#F7F8FC] h-8 rounded-md px-3 border-[#E5E7EB]">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-funnel w-4 h-4 mr-1"><path d="M10 20a1 1 0 0 0 .553.895l2 1A1 1 0 0 0 14 21v-7a2 2 0 0 1 .517-1.341L21.74 4.67A1 1 0 0 0 21 3H3a1 1 0 0 0-.742 1.67l7.225 7.989A2 2 0 0 1 10 14z"></path></svg> Filter
+                <button data-slot="button" class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all border bg-white text-foreground hover:bg-[#F7F8FC] h-8 rounded-md gap-1.5 px-3 border-[#E5E7EB]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-funnel w-4 h-4 mr-1">
+                        <path d="M10 20a1 1 0 0 0 .553.895l2 1A1 1 0 0 0 14 21v-7a2 2 0 0 1 .517-1.341L21.74 4.67A1 1 0 0 0 21 3H3a1 1 0 0 0-.742 1.67l7.225 7.989A2 2 0 0 1 10 14z"></path>
+                    </svg> 
+                    Filter
                 </button>
             </div>
-            
-            <div class="w-full" style="height: 260px;">
-                <svg class="w-full h-full" viewBox="0 0 731 260" preserveAspectRatio="none">
-                    <line stroke="#6B7280" x1="65" y1="225" x2="726" y2="225"></line>
-                    <g font-size="12" fill="#6B7280" text-anchor="middle">
-                        <text x="120" y="245">Jan</text><text x="230" y="245">Feb</text><text x="340" y="245">Mar</text>
-                        <text x="450" y="245">Apr</text><text x="560" y="245">Mei</text><text x="670" y="245">Jun</text>
-                    </g>
-                    <g fill="#1A2B5C]">
-                        <rect x="76" y="137" width="88" height="88" rx="6"></rect>
-                        <rect x="186" y="93" width="88" height="132" rx="6"></rect>
-                        <rect x="296" y="60" width="88" height="165" rx="6"></rect>
-                        <rect x="406" y="115" width="88" height="110" rx="6"></rect>
-                        <rect x="516" y="27" width="88" height="198" rx="6"></rect>
-                        <rect x="626" y="71" width="88" height="154" rx="6"></rect>
-                    </g>
-                </svg>
+
+            <div class="w-full relative" style="height: 260px;">
+                <canvas id="chartTrenKegiatan"></canvas>
             </div>
         </div>
 
@@ -93,13 +82,8 @@
             <h3 class="font-bold text-[#1C1E2C]">Status Ormawa</h3>
             <p class="text-xs text-[#6B7280] mb-4">Distribusi keaktifan</p>
             
-            <div class="flex flex-col items-center justify-center" style="height: 210px;">
-                <div class="w-36 h-36 rounded-full border-[16px] border-[#9CA3AF] flex items-center justify-center relative" style="border-top-color: #22C55E; border-right-color: #22C55E; border-left-color: #22C55E;">
-                    <div class="absolute text-center">
-                        <div class="text-xl font-bold text-[#1C1E2C]">{{ $ormawa_aktif_count ?? 20 }}</div>
-                        <div class="text-[10px] text-[#6B7280]">Ormawa Aktif</div>
-                    </div>
-                </div>
+            <div class="relative w-full flex items-center justify-center mb-2" style="height: 210px;">
+                <canvas id="chartStatusOrmawa"></canvas>
             </div>
             
             <div class="flex justify-center gap-4 text-xs mt-2">
@@ -196,4 +180,146 @@
         
     </div>
 </div>
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js" integrity="sha256-SERKgtTty1vsDxll+qzd4Y2cF9swY9BCq62i9wXJ9Uo=" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const ctx = document.getElementById('chartTrenKegiatan').getContext('2d');
+
+        const dataKegiatan = [8, 12, 15, 10, 18, 14]; 
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'],
+                datasets: [{
+                    label: 'Total Kegiatan',
+                    data: dataKegiatan,
+                    backgroundColor: '#1A2B5C', 
+                    borderRadius: 6,            
+                    borderSkipped: false,
+                    barPercentage: 0.6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: '#1C1E2C',
+                        titleColor: '#ffffff',
+                        bodyColor: '#ffffff',
+                        padding: 10,
+                        cornerRadius: 6,
+                        displayColors: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 20, 
+                        grid: {
+                            color: '#E5E7EB',
+                            drawBorder: false
+                        },
+                        ticks: {
+                            stepSize: 5,
+                            color: '#6B7280',
+                            font: {
+                                size: 12,
+                                family: 'Plus Jakarta Sans, Inter, sans-serif'
+                            }
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            color: '#6B7280',
+                            font: {
+                                size: 12,
+                                family: 'Plus Jakarta Sans, Inter, sans-serif'
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const ctxDoughnut = document.getElementById('chartStatusOrmawa').getContext('2d');
+
+        const dataAktif = 20;
+        const dataTidakAktif = 5;
+
+        const centerTextPlugin = {
+            id: 'centerText',
+            afterDraw(chart) {
+                const { ctx, chartArea: { top, bottom, left, right, width, height } } = chart;
+                ctx.save();
+
+                ctx.font = 'bold 24px Plus Jakarta Sans, Inter, sans-serif';
+                ctx.fillStyle = '#1C1E2C';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                const centerX = left + width / 2;
+                const centerY = top + height / 2;
+                
+                ctx.fillText(dataAktif.toString(), centerX, centerY - 8);
+
+                ctx.font = '500 10px Plus Jakarta Sans, Inter, sans-serif';
+                ctx.fillStyle = '#6B7280';
+                ctx.fillText('Ormawa Aktif', centerX, centerY + 14);
+                
+                ctx.restore();
+            }
+        };
+
+        new Chart(ctxDoughnut, {
+            type: 'doughnut',
+            data: {
+                labels: ['Aktif', 'Tidak Aktif'],
+                datasets: [{
+                    data: [dataAktif, dataTidakAktif],
+                    backgroundColor: ['#22C55E', '#9CA3AF'], 
+                    borderColor: '#ffffff',                
+                    borderWidth: 4,                         
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '72%', 
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: '#1C1E2C',
+                        padding: 10,
+                        cornerRadius: 6,
+                        displayColors: true, 
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) { label += ': '; }
+                                if (context.parsed !== null) { label += context.parsed + ' Ormawa'; }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            },
+            plugins: [centerTextPlugin]
+        });
+    });
+</script>
+@endpush
 @endsection
