@@ -31,7 +31,7 @@
     </div>
 
     <nav class="flex-1 px-3 py-3 space-y-1 overflow-y-auto">
-        <a href="{{ route('dashboard.index') }}" 
+        <a href="{{ route('bendahara.dashboard.index') }}" 
            class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all relative {{ request()->routeIs('dashboard.index') ? 'bg-white/10 text-[#F5A623] font-semibold' : 'text-white/80 hover:bg-white/5' }}">
             @if(request()->routeIs('dashboard.index'))
                 <span class="absolute left-0 top-2 bottom-2 w-1 bg-[#F5A623] rounded-r"></span>
@@ -40,7 +40,7 @@
             <span class="flex-1 text-left">Dashboard</span>
         </a>
 
-        <a href="{{ route('info-ormawa.index') }}" 
+        <a href="{{ route('bendahara.info-ormawa.index') }}" 
            class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all relative {{ request()->routeIs('info-ormawa.index') ? 'bg-white/10 text-[#F5A623] font-semibold' : 'text-white/80 hover:bg-white/5' }}">
             @if(request()->routeIs('info-ormawa.index'))
                 <span class="absolute left-0 top-2 bottom-2 w-1 bg-[#F5A623] rounded-r"></span>
@@ -49,7 +49,7 @@
             <span class="flex-1 text-left">Info Ormawa</span>
         </a>
 
-        <a href="{{ route('input-keuangan.create') }}" 
+        <a href="{{ route('bendahara.input-keuangan.create') }}" 
            class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all relative {{ request()->routeIs('input-keuangan.create') ? 'bg-white/10 text-[#F5A623] font-semibold' : 'text-white/80 hover:bg-white/5' }}">
             @if(request()->routeIs('input-keuangan.create'))
                 <span class="absolute left-0 top-2 bottom-2 w-1 bg-[#F5A623] rounded-r"></span>
@@ -58,7 +58,7 @@
             <span class="flex-1 text-left">Input Keuangan</span>
         </a>
 
-        <a href="{{ route('laporan.index') }}" 
+        <a href="{{ route('bendahara.laporan.index') }}" 
            class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all relative {{ request()->routeIs('laporan.*') ? 'bg-white/10 text-[#F5A623] font-semibold' : 'text-white/80 hover:bg-white/5' }}">
             @if(request()->routeIs('laporan.index'))
                 <span class="absolute left-0 top-2 bottom-2 w-1 bg-[#F5A623] rounded-r"></span>
@@ -67,7 +67,7 @@
             <span class="flex-1 text-left">Laporan</span>
         </a>
 
-        <a href="{{ route('log-aktivitas.index') }}" 
+        <a href="{{ route('bendahara.log-aktivitas.index') }}" 
            class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all relative {{ request()->routeIs('log-aktivitas.index') ? 'bg-white/10 text-[#F5A623] font-semibold' : 'text-white/80 hover:bg-white/5' }}">
             @if(request()->routeIs('log-aktivitas.index'))
                 <span class="absolute left-0 top-2 bottom-2 w-1 bg-[#F5A623] rounded-r"></span>
@@ -76,7 +76,7 @@
             <span class="flex-1 text-left">Log Aktivitas</span>
         </a>
 
-        <a href="{{ route('profile.index') }}" 
+        <a href="{{ route('bendahara.profile.index') }}" 
            class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all relative {{ request()->routeIs('profile.*') ? 'bg-white/10 text-[#F5A623] font-semibold' : 'text-white/80 hover:bg-white/5' }}">
             @if(request()->routeIs('profil.index'))
                 <span class="absolute left-0 top-2 bottom-2 w-1 bg-[#F5A623] rounded-r"></span>

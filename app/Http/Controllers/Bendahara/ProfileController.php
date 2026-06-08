@@ -1,22 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\FinanceManagement;
+namespace App\Http\Controllers\Bendahara;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class LogAktivitasController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('pages.finance-management.log-aktivitas');
+        return view('pages.bendahara.profile.index');
     }
 
     /**
-     * Show the form for creating a new resource.`
+     * Show the form for creating a new resource.
      */
     public function create()
     {

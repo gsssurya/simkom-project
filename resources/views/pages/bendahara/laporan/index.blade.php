@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.bendahara.app')
 
 @section('title', 'Laporan Keuangan')
 @section('subtitle', 'Generate laporan periodik')

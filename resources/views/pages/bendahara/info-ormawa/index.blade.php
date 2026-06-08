@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.bendahara.app')
 
 @section('title', 'Info Ormawa')
 @section('subtitle', 'Data organisasi yang Anda kelola keuangannya (read-only)')

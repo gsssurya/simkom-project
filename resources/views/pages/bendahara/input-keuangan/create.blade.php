@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.bendahara.app')
 
 @section('title', 'Input Keuangan')
 @section('subtitle', 'Catat transaksi pemasukan & pengeluaran')

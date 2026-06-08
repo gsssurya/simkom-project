@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\FinanceManagement;
+namespace App\Http\Controllers\Bendahara;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class InputKeuanganController extends Controller
+class LaporanController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        
+        $totalPengeluaran = 1000000;
+        return view('pages.bendahara.laporan.index')->with('totalPengeluaran', $totalPengeluaran);
     }
 
     /**
@@ -20,7 +21,7 @@ class InputKeuanganController extends Controller
      */
     public function create()
     {
-        return view('pages.finance-management.input-keuangan.create');
+        //
     }
 
     /**

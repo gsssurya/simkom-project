@@ -13,9 +13,9 @@
 <body>
     <div class="size-full min-h-screen bg-[#F7F8FC]">
         <div class="flex h-screen bg-[#F7F8FC] overflow-hidden">
-            @include('layouts.sidebar')
+            @include('layouts.admin.sidebar')
             <main class="flex-1 overflow-y-auto w-full">
-                @include('layouts.header')
+                @include('layouts.admin.header')
                 @yield('content')
             </main>
         </div>

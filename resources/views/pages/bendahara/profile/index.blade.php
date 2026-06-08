@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.bendahara.app')
 
 @section('title', 'Profil Saya')
 @section('subtitle', 'Kelola data diri & foto profil')

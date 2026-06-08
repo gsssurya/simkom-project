@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\FinanceManagement;
+namespace App\Http\Controllers\Bendahara;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class InfoOrmawaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('pages.finance-management.dashboard.index');
+        return view('pages.bendahara.info-ormawa.index');
     }
 
     /**

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.bendahara.app')
 
 @section('title', 'Dashboard Keuangan')
 @section('subtitle', 'HIMA Teknik Informatika')
@@ -8,10 +8,10 @@
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
             <div class="bg-white rounded-xl border border-[#E5E7EB] shadow-[0_2px_12px_rgba(0,0,0,0.04)] p-6 bg-gradient-to-br from-[#1A2B5C] to-[#0F1B3D] text-white">
                 <div class="text-xs uppercase tracking-wider text-white/70 font-semibold">Saldo Saat Ini</div>
-                <div class="text-3xl font-bold mt-2">Rp {{ number_format($saldo_saat_ini ?? 18500000, 0, ',', '.') }}</div>
+                <div class="text-3xl font-bold mt-2">Rp {{ number_format($saldo_saat_ini, 0, ',', '.') }}</div>
                 <div class="flex items-center gap-1 text-xs text-[#22C55E] mt-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-up w-4 h-4"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg> 
-                    <span>{{ $persentase_saldo ?? '+12%' }} dari bulan lalu</span>
+                    <span>{{ $persentase_saldo }} dari bulan lalu</span>
                 </div>
             </div>
 
@@ -19,7 +19,7 @@
                 <div class="flex items-start justify-between">
                     <div>
                         <div class="text-xs text-[#6B7280] uppercase tracking-wide font-medium">Pemasukan Bulan Ini</div>
-                        <div class="text-2xl font-bold text-[#1C1E2C] mt-1">Rp {{ number_format($pemasukan_bulan_ini ?? 5000000, 0, ',', '.') }}</div>
+                        <div class="text-2xl font-bold text-[#1C1E2C] mt-1">Rp {{ number_format($pemasukan_bulan_ini, 0, ',', '.') }}</div>
                     </div>
                     <div class="w-11 h-11 rounded-lg flex items-center justify-center bg-[#22C55E] text-white">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-arrow-down w-5 h-5"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v8"></path><path d="m8 12 4 4 4-4"></path></svg>
@@ -31,7 +31,7 @@
                 <div class="flex items-start justify-between">
                     <div>
                         <div class="text-xs text-[#6B7280] uppercase tracking-wide font-medium">Pengeluaran Bulan Ini</div>
-                        <div class="text-2xl font-bold text-[#1C1E2C] mt-1">Rp {{ number_format($pengeluaran_bulan_ini ?? 3250000, 0, ',', '.') }}</div>
+                        <div class="text-2xl font-bold text-[#1C1E2C] mt-1">Rp {{ number_format($pengeluaran_bulan_ini, 0, ',', '.') }}</div>
                     </div>
                     <div class="w-11 h-11 rounded-lg flex items-center justify-center bg-[#EF4444] text-white">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-arrow-up w-5 h-5"><circle cx="12" cy="12" r="10"></circle><path d="m16 12-4-4-4 4"></path><path d="M12 16V8"></path></svg>
@@ -61,17 +61,10 @@
             <div class="bg-white rounded-xl border border-[#E5E7EB] shadow-[0_2px_12px_rgba(0,0,0,0.04)] p-6">
                 <h3 class="font-bold text-[#1C1E2C] mb-3">Anggaran Per Kegiatan</h3>
                 <div class="space-y-4">
-                    @php
-                        $kegiatan = $kegiatan ?? [
-                            ['nama' => 'Workshop AI 2026', 'terpakai' => 3250000, 'total' => 5000000, 'persen' => 90, 'warna' => 'rgb(34, 197, 94)'],
-                            ['nama' => 'Hackathon 48 Jam', 'terpakai' => 800000, 'total' => 4000000, 'persen' => 20, 'warna' => 'rgb(245, 166, 35)'],
-                            ['nama' => 'Studi Banding UI', 'terpakai' => 0, 'total' => 8000000, 'persen' => 0, 'warna' => 'rgb(26, 43, 92)']
-                        ];
-                    @endphp
                     @foreach($kegiatan as $item)
                     <div>
                         <div class="flex items-center justify-between text-sm">
-                            <span class="font-semibold">{{ $item['nama'] }}</span>
+                            <span class="font-semibold text-[#1C1E2C]">{{ $item['nama'] }}</span>
                             <span class="text-[#6B7280]">Rp {{ number_format($item['terpakai'], 0, ',', '.') }} / {{ number_format($item['total'], 0, ',', '.') }}</span>
                         </div>
                         <div class="mt-2 h-2 bg-[#E5E7EB] rounded-full overflow-hidden">
@@ -85,14 +78,6 @@
             <div class="bg-white rounded-xl border border-[#E5E7EB] shadow-[0_2px_12px_rgba(0,0,0,0.04)] p-6">
                 <h3 class="font-bold text-[#1C1E2C] mb-3">Transaksi Terbaru</h3>
                 <div class="space-y-3">
-                    @php
-                        $transaksi = $transaksi ?? [
-                            ['nama' => 'Iuran anggota Mei', 'tanggal' => '30 Mei 2026', 'tipe' => 'masuk', 'jumlah' => 2400000],
-                            ['nama' => 'Konsumsi rapat', 'tanggal' => '28 Mei 2026', 'tipe' => 'keluar', 'jumlah' => 350000],
-                            ['nama' => 'Sewa tempat workshop', 'tanggal' => '25 Mei 2026', 'tipe' => 'keluar', 'jumlah' => 1500000],
-                            ['nama' => 'Sponsor Workshop AI', 'tanggal' => '20 Mei 2026', 'tipe' => 'masuk', 'jumlah' => 3000000]
-                        ];
-                    @endphp
                     @foreach($transaksi as $trx)
                     <div class="flex items-center justify-between">
                         <div class="flex items-center gap-3">
@@ -119,28 +104,30 @@
             </div>
         </div>
     </div>
+
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js" integrity="sha256-SERKgtTty1vsDxll+qzd4Y2cF9swY9BCq62i9wXJ9Uo=" crossorigin="anonymous"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const ctxLine = document.getElementById('chartArusKas').getContext('2d');
 
-            // Data Riil Arus Keuangan (dalam Satuan Juta Rupiah)
-            const dataPemasukan = [2.0, 3.0, 2.5, 4.0, 3.5, 5.0];
-            const dataPengeluaran = [1.5, 1.8, 2.2, 2.7, 3.0, 3.2];
+            // Inject Data dari Controller menggunakan Directive Blade JSON
+            const labelBulanDinamis = @json($labels);
+            const nominalPemasukan = @json($dataPemasukan);
+            const nominalPengeluaran = @json($dataPengeluaran);
 
             new Chart(ctxLine, {
                 type: 'line',
                 data: {
-                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'],
+                    labels: labelBulanDinamis,
                     datasets: [
                         {
                             label: 'Masuk',
-                            data: dataPemasukan,
-                            borderColor: '#22C55E',       // Hijau
+                            data: nominalPemasukan,
+                            borderColor: '#22C55E',
                             backgroundColor: 'transparent',
                             borderWidth: 3,
-                            tension: 0.3,                 // Membuat lengkungan garis melandai halus (tidak kaku patah)
+                            tension: 0.3,
                             pointBackgroundColor: '#ffffff',
                             pointBorderColor: '#22C55E',
                             pointBorderWidth: 3,
@@ -149,11 +136,11 @@
                         },
                         {
                             label: 'Keluar',
-                            data: dataPengeluaran,
-                            borderColor: '#EF4444',       // Merah
+                            data: nominalPengeluaran,
+                            borderColor: '#EF4444',
                             backgroundColor: 'transparent',
                             borderWidth: 3,
-                            tension: 0.3,                 // Kelengkungan sudut garis riil
+                            tension: 0.3,
                             pointBackgroundColor: '#ffffff',
                             pointBorderColor: '#EF4444',
                             pointBorderWidth: 3,
@@ -167,7 +154,7 @@
                     maintainAspectRatio: false,
                     plugins: {
                         legend: {
-                            display: false // Menggunakan legenda HTML bawaan di atas agar posisi presisi
+                            display: false
                         },
                         tooltip: {
                             backgroundColor: '#1C1E2C',
@@ -190,14 +177,12 @@
                     scales: {
                         y: {
                             beginAtZero: true,
-                            max: 6.0, // Batas maksimal nominal sesuai template SVG Anda (6jt)
                             grid: {
                                 color: '#F1F2F6',
-                                lineDash: [3, 3], // Membuat pola grid garis horizontal putus-putus
+                                lineDash: [3, 3],
                                 drawBorder: false
                             },
                             ticks: {
-                                stepSize: 1.5, // Lonjakan angka skala: 0jt, 1.5jt, 3jt, 4.5jt, 6jt
                                 color: '#6B7280',
                                 font: { size: 11 },
                                 callback: function (value) {
@@ -208,7 +193,7 @@
                         x: {
                             grid: {
                                 color: '#F1F2F6',
-                                lineDash: [3, 3], // Pola grid vertikal putus-putus
+                                lineDash: [3, 3],
                                 drawBorder: false
                             },
                             ticks: {

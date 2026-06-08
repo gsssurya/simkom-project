@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.bendahara.app')
 
 @section('title', 'Log Aktivitas Saya')
 @section('subtitle', 'Riwayat input transaksi & laporan keuangan Anda')
