@@ -11,8 +11,12 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
     )
-    ->withMiddleware(function (Middleware $middleware): void {
-        //
+    ->withMiddleware(function (Middleware $middleware) {
+        // Tambahkan baris ini untuk mematikan CSRF khusus route Postman Anda
+        $middleware->validateCsrfTokens(except: [
+            'dashboard/daftar-organisasi',
+            'register',
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(

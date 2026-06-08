@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -15,43 +14,57 @@ class RegisterController extends Controller
         return view('auth.register');
     }
 
-    public function register(Request $request)
+    public function store(Request $request) 
     {
+        // 1. Validasi Input sesuai dokumen fungsional (NIM, Nama, Prodi, Semester, Email, No Telp)
         $validator = Validator::make($request->all(), [
-            'email' => 'required|string|email|max:100|unique:user,email',
-            'password' => 'required|string|min:6|confirmed',
-            'no_telepon' => 'nullable|string|max:15',
-            'role' => 'required|in:mahasiswa,pengurus,bendahara,admin,pembina',
-            'nim' => 'required_if:role,mahasiswa|nullable|string|max:15|unique:mahasiswa,nim',
-            'nama' => 'required_if:role,mahasiswa|nullable|string|max:100',
-            'id_program_studi' => 'required_if:role,mahasiswa|nullable|integer',
-            'semester' => 'required_if:role,mahasiswa|nullable|integer',
+            'email'            => 'required|email|unique:user,email',
+            'password'         => 'required|string|min:6',
+            'no_telepon'       => 'required|string|max:15',
+            'nim'              => 'required|string|max:15|unique:mahasiswa,nim',
+            'nama'             => 'required|string|max:100',
+            'id_program_studi' => 'required|integer',
+            'semester'         => 'required|integer',
         ]);
 
         if ($validator->fails()) {
-            return redirect()->back()
-                ->withErrors($validator)
-                ->withInput()
-                ->with('error', 'Biodata Tidak Valid'); 
+            return response()->json([
+                'status'  => 'error',
+                'message' => 'Validasi pendaftaran gagal',
+                'errors'  => $validator->errors()
+            ], 422);
         }
 
-        $user = User::create([
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'no_telepon' => $request->no_telepon,
-            'role' => $request->role,
-        ]);
+        DB::beginTransaction();
 
-        if ($request->role === 'mahasiswa') {
-            Mahasiswa::create([
-                'id_user' => $user->id,
-                'nim' => $request->nim,
-                'nama' => $request->nama,
-                'id_program_studi' => $request->id_program_studi,
-                'semester' => $request->semester,
+        try {
+            // 2. Simpan ke tabel `user` (Role otomatis 'mahasiswa' untuk form ini)
+            $userId = DB::table('user')->insertGetId([
+                'email'      => $request->email,
+                'no_telepon' => $request->no_telepon,
+                'password'   => Hash::make($request->password),
+                'role'       => 'mahasiswa',
             ]);
-        }
 
-        return redirect()->route('login')->with('success', 'Registrasi Akun Berhasil');
+            // 3. Simpan biodata ke tabel `mahasiswa`
+            DB::table('mahasiswa')->insert([
+                'id_user'          => $userId,
+                'nim'              => $request->nim,
+                'nama'             => $request->nama,
+                'id_program_studi' => $request->id_program_studi,
+                'semester'         => $request->semester,
+            ]);
+
+            DB::commit();
+
+            return redirect('/pilih-ormawa')->with('success', 'Akun berhasil dibuat! Silakan pilih organisasi Anda.');
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'status'  => 'error',
+                'message' => 'Terjadi kesalahan server: ' . $e->getMessage()
+            ], 500);
+        }
     }
 }

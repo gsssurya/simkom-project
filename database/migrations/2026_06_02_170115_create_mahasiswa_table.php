@@ -12,19 +12,15 @@ return new class extends Migration
 public function up(): void
 {
     Schema::create('mahasiswa', function (Blueprint $table) {
-        $table->id(); // ID mahasiswa tetap bawaan
-
-        // Buat id_user dengan tipe unsignedInteger agar COCOK 100% dengan increments() di tabel user
-        $table->unsignedInteger('id_user'); 
-
-        $table->string('nim', 20)->unique();
+        $table->id();
+        $table->unsignedInteger('id_user'); // Dicocokkan dengan id tabel user
+        $table->string('nim', 15)->unique();
         $table->string('nama', 100);
-        $table->integer('id_program_studi');
+        $table->integer('id_program_studi'); 
         $table->integer('semester');
-        $table->timestamps();
 
-        // Deklarasi foreign key manual ke tabel user
         $table->foreign('id_user')->references('id')->on('user')->onDelete('cascade');
+
     });
 }
     /**
