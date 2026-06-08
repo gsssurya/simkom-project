@@ -52,77 +52,8 @@
                 </div>
             </div>
             
-            <div class="recharts-responsive-container" style="width: 100%; height: 280px; min-width: 0px;">
-                <div class="recharts-wrapper" style="position: relative; cursor: default; width: 100%; height: 100%; max-height: 280px;">
-                    <svg class="recharts-surface" width="100%" height="100%" viewBox="0 0 1127 280" preserveAspectRatio="none" style="width: 100%; height: 100%;">
-                        <defs>
-                            <clipPath id="recharts1-clip"><rect x="65" y="5" height="240" width="1057"></rect></clipPath>
-                        </defs>
-                        <g class="recharts-cartesian-grid">
-                            <g class="recharts-cartesian-grid-horizontal">
-                                <line stroke-dasharray="3 3" stroke="#F1F2F6" fill="none" x1="65" y1="245" x2="1122" y2="245"></line>
-                                <line stroke-dasharray="3 3" stroke="#F1F2F6" fill="none" x1="65" y1="185" x2="1122" y2="185"></line>
-                                <line stroke-dasharray="3 3" stroke="#F1F2F6" fill="none" x1="65" y1="125" x2="1122" y2="125"></line>
-                                <line stroke-dasharray="3 3" stroke="#F1F2F6" fill="none" x1="65" y1="65" x2="1122" y2="65"></line>
-                                <line stroke-dasharray="3 3" stroke="#F1F2F6" fill="none" x1="65" y1="5" x2="1122" y2="5"></line>
-                            </g>
-                            <g class="recharts-cartesian-grid-vertical">
-                                <line stroke-dasharray="3 3" stroke="#F1F2F6" fill="none" x1="65" y1="5" x2="65" y2="245"></line>
-                                <line stroke-dasharray="3 3" stroke="#F1F2F6" fill="none" x1="276.4" y1="5" x2="276.4" y2="245"></line>
-                                <line stroke-dasharray="3 3" stroke="#F1F2F6" fill="none" x1="487.8" y1="5" x2="487.8" y2="245"></line>
-                                <line stroke-dasharray="3 3" stroke="#F1F2F6" fill="none" x1="699.2" y1="5" x2="699.2" y2="245"></line>
-                                <line stroke-dasharray="3 3" stroke="#F1F2F6" fill="none" x1="910.6" y1="5" x2="910.6" y2="245"></line>
-                                <line stroke-dasharray="3 3" stroke="#F1F2F6" fill="none" x1="1122" y1="5" x2="1122" y2="245"></line>
-                            </g>
-                        </g>
-                        <g class="recharts-layer recharts-cartesian-axis recharts-xAxis xAxis">
-                            <line orientation="bottom" stroke="#6B7280" class="recharts-cartesian-axis-line" fill="none" x1="65" y1="245" x2="1122" y2="245"></line>
-                            <g class="recharts-cartesian-axis-ticks">
-                                @php $months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun']; $positions = [65, 276.4, 487.8, 699.2, 910.6, 1117.8]; @endphp
-                                @foreach($months as $index => $month)
-                                <g class="recharts-layer recharts-cartesian-axis-tick">
-                                    <line orientation="bottom" stroke="#6B7280" class="recharts-cartesian-axis-tick-line" fill="none" x1="{{ $positions[$index] }}" y1="251" x2="{{ $positions[$index] }}" y2="245"></line>
-                                    <text orientation="bottom" stroke="none" font-size="12" x="{{ $positions[$index] }}" y="253" class="recharts-text recharts-cartesian-axis-tick-value" text-anchor="middle" fill="#6B7280"><tspan x="{{ $positions[$index] }}" dy="0.71em">{{ $month }}</tspan></text>
-                                </g>
-                                @endforeach
-                            </g>
-                        </g>
-                        <g class="recharts-layer recharts-cartesian-axis recharts-yAxis yAxis">
-                            <line orientation="left" stroke="#6B7280" class="recharts-cartesian-axis-line" fill="none" x1="65" y1="5" x2="65" y2="245"></line>
-                            <g class="recharts-cartesian-axis-ticks">
-                                @php $labels = ['0jt', '1.5jt', '3jt', '4.5jt', '6jt']; $y_pos = [245, 185, 125, 65, 9]; @endphp
-                                @foreach($labels as $idx => $label)
-                                <g class="recharts-layer recharts-cartesian-axis-tick">
-                                    <line orientation="left" stroke="#6B7280" class="recharts-cartesian-axis-tick-line" fill="none" x1="59" y1="{{ $y_pos[$idx] }}" x2="65" y2="{{ $y_pos[$idx] }}"></line>
-                                    <text orientation="left" stroke="none" font-size="12" x="57" y="{{ $y_pos[$idx] }}" class="recharts-text recharts-cartesian-axis-tick-value" text-anchor="end" fill="#6B7280"><tspan x="57" dy="0.355em">{{ $label }}</tspan></text>
-                                </g>
-                                @endforeach
-                            </g>
-                        </g>
-                        <g class="recharts-layer recharts-line">
-                            <path stroke="#22C55E" stroke-width="3" fill="none" class="recharts-curve recharts-line-curve" d="M65,165C135.467,145,205.933,125,276.4,125C346.867,125,417.333,145,487.8,145C558.267,145,628.733,85,699.2,85C769.667,85,840.133,105,910.6,105C981.067,105,1051.533,75,1122,45"></path>
-                            <g class="recharts-layer recharts-line-dots">
-                                <circle r="4" stroke="#22C55E" stroke-width="3" fill="#fff" cx="65" cy="165" class="recharts-dot"></circle>
-                                <circle r="4" stroke="#22C55E" stroke-width="3" fill="#fff" cx="276.4" cy="125" class="recharts-dot"></circle>
-                                <circle r="4" stroke="#22C55E" stroke-width="3" fill="#fff" cx="487.8" cy="145" class="recharts-dot"></circle>
-                                <circle r="4" stroke="#22C55E" stroke-width="3" fill="#fff" cx="699.2" cy="85" class="recharts-dot"></circle>
-                                <circle r="4" stroke="#22C55E" stroke-width="3" fill="#fff" cx="910.6" cy="105" class="recharts-dot"></circle>
-                                <circle r="4" stroke="#22C55E" stroke-width="3" fill="#fff" cx="1122" cy="45" class="recharts-dot"></circle>
-                            </g>
-                        </g>
-                        <g class="recharts-layer recharts-line">
-                            <path stroke="#EF4444" stroke-width="3" fill="none" class="recharts-curve recharts-line-curve" d="M65,185C135.467,181.333,205.933,177.667,276.4,173C346.867,168.333,417.333,163,487.8,157C558.267,151,628.733,142.333,699.2,137C769.667,131.667,840.133,128.667,910.6,125C981.067,121.333,1051.533,118.167,1122,115"></path>
-                            <g class="recharts-layer recharts-line-dots">
-                                <circle r="4" stroke="#EF4444" stroke-width="3" fill="#fff" cx="65" cy="185" class="recharts-dot"></circle>
-                                <circle r="4" stroke="#EF4444" stroke-width="3" fill="#fff" cx="276.4" cy="173" class="recharts-dot"></circle>
-                                <circle r="4" stroke="#EF4444" stroke-width="3" fill="#fff" cx="487.8" cy="157" class="recharts-dot"></circle>
-                                <circle r="4" stroke="#EF4444" stroke-width="3" fill="#fff" cx="699.2" cy="137" class="recharts-dot"></circle>
-                                <circle r="4" stroke="#EF4444" stroke-width="3" fill="#fff" cx="910.6" cy="125" class="recharts-dot"></circle>
-                                <circle r="4" stroke="#EF4444" stroke-width="3" fill="#fff" cx="1122" cy="115" class="recharts-dot"></circle>
-                            </g>
-                        </g>
-                    </svg>
-                </div>
+            <div class="w-full relative" style="height: 280px;">
+                <canvas id="chartArusKas"></canvas>
             </div>
         </div>
 
@@ -132,7 +63,7 @@
                 <div class="space-y-4">
                     @php
                         $kegiatan = $kegiatan ?? [
-                            ['nama' => 'Workshop AI 2026', 'terpakai' => 3250000, 'total' => 5000000, 'persen' => 65, 'warna' => 'rgb(34, 197, 94)'],
+                            ['nama' => 'Workshop AI 2026', 'terpakai' => 3250000, 'total' => 5000000, 'persen' => 90, 'warna' => 'rgb(34, 197, 94)'],
                             ['nama' => 'Hackathon 48 Jam', 'terpakai' => 800000, 'total' => 4000000, 'persen' => 20, 'warna' => 'rgb(245, 166, 35)'],
                             ['nama' => 'Studi Banding UI', 'terpakai' => 0, 'total' => 8000000, 'persen' => 0, 'warna' => 'rgb(26, 43, 92)']
                         ];
@@ -188,4 +119,107 @@
             </div>
         </div>
     </div>
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js" integrity="sha256-SERKgtTty1vsDxll+qzd4Y2cF9swY9BCq62i9wXJ9Uo=" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const ctxLine = document.getElementById('chartArusKas').getContext('2d');
+
+            // Data Riil Arus Keuangan (dalam Satuan Juta Rupiah)
+            const dataPemasukan = [2.0, 3.0, 2.5, 4.0, 3.5, 5.0];
+            const dataPengeluaran = [1.5, 1.8, 2.2, 2.7, 3.0, 3.2];
+
+            new Chart(ctxLine, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun'],
+                    datasets: [
+                        {
+                            label: 'Masuk',
+                            data: dataPemasukan,
+                            borderColor: '#22C55E',       // Hijau
+                            backgroundColor: 'transparent',
+                            borderWidth: 3,
+                            tension: 0.3,                 // Membuat lengkungan garis melandai halus (tidak kaku patah)
+                            pointBackgroundColor: '#ffffff',
+                            pointBorderColor: '#22C55E',
+                            pointBorderWidth: 3,
+                            pointRadius: 4,
+                            pointHoverRadius: 6
+                        },
+                        {
+                            label: 'Keluar',
+                            data: dataPengeluaran,
+                            borderColor: '#EF4444',       // Merah
+                            backgroundColor: 'transparent',
+                            borderWidth: 3,
+                            tension: 0.3,                 // Kelengkungan sudut garis riil
+                            pointBackgroundColor: '#ffffff',
+                            pointBorderColor: '#EF4444',
+                            pointBorderWidth: 3,
+                            pointRadius: 4,
+                            pointHoverRadius: 6
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false // Menggunakan legenda HTML bawaan di atas agar posisi presisi
+                        },
+                        tooltip: {
+                            backgroundColor: '#1C1E2C',
+                            padding: 12,
+                            cornerRadius: 8,
+                            titleColor: '#ffffff',
+                            bodyColor: '#ffffff',
+                            callbacks: {
+                                label: function (context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) { label += ': '; }
+                                    if (context.parsed.y !== null) {
+                                        label += 'Rp ' + context.parsed.y.toFixed(1) + ' Juta';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 6.0, // Batas maksimal nominal sesuai template SVG Anda (6jt)
+                            grid: {
+                                color: '#F1F2F6',
+                                lineDash: [3, 3], // Membuat pola grid garis horizontal putus-putus
+                                drawBorder: false
+                            },
+                            ticks: {
+                                stepSize: 1.5, // Lonjakan angka skala: 0jt, 1.5jt, 3jt, 4.5jt, 6jt
+                                color: '#6B7280',
+                                font: { size: 11 },
+                                callback: function (value) {
+                                    return value === 0 ? '0jt' : value + 'jt';
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: '#F1F2F6',
+                                lineDash: [3, 3], // Pola grid vertikal putus-putus
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: '#6B7280',
+                                font: { size: 11 }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+@endpush
 @endsection
